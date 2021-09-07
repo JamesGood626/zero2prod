@@ -5,6 +5,22 @@ edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[lib]
+# Any path may be used here, but this is a community convention.
+path = "src/lib.rs"
+
+# Not absolutely necessary, but helps provide clarity once we move away from the default configuration.
+# Note the double brackets, it's an array in TOML syntax.
+# We can only have one library, but we can have multiple binaries.
+[[bin]]
+path = "src/main.rs"
+name = "zero2prod"
+
 [dependencies]
 actix-web = "=4.0.0-beta.8"
 actix-http = "=3.0.0-beta.8"
+
+[dev-dependencies]
+actix-rt = "2.0"
+reqwest = "0.11"
+tokio = "1.0"
