@@ -1,4 +1,7 @@
 use zero2prod::run;
+use std::net::TcpListener;
+
+// LLO pg 40 (Adding tests for new email subscription POST request)
 
 // // Handler functions may have different function signatures.
 // // This is enabled via traits in actix_web.
@@ -50,7 +53,15 @@ use zero2prod::run;
 async fn main() -> std::io::Result<()> {
     // Bubble up the io::Error if we failed to bind the address.
     // Otherwise call .await on our server.
-    run()?.await
+    // run("127.0.0.1:8000")?.await
+
+    // (Refactor #3)
+    let listener = TcpListener::bind("127.0.0.1:0").expect("Failed to bind random port");
+    let port = listener.local_addr().unwrap().port();
+    println!("Running on port:");
+    let s = format!("http://127.0.0.1:{}", port);
+    println!("{}", s);
+    run(listener)?.await
 }
 
 // For testing, there are three options:
