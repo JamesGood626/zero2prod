@@ -1,8 +1,6 @@
 //! tests/health_check.rs
 use std::net::TcpListener;
 
-// LLO pg 42
-
 // SOLVED Error #1:
 // pg 34
 // Author runs the test on this page and it passes, but I'm getting this failure message:
